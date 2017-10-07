@@ -12,6 +12,7 @@ namespace ToyBox {
 	public class AppManager : MonoBehaviour {
 
 		#region Singleton実装
+
 		private static AppManager m_instance;
 
 		public static AppManager Instance {
@@ -24,7 +25,9 @@ namespace ToyBox {
 			}
 		}
 
-		private AppManager() { }
+		private AppManager() {
+		}
+
 		#endregion
 
 		//オーディオ環境
@@ -33,12 +36,12 @@ namespace ToyBox {
 		//フェード環境
 		public Fade m_fade { get; private set; }
 
-		void Initialize() {
+		void Initialize () {
 			m_audioManager = AudioManager.Instance;
 			m_audioManager.Initialize();
 			m_fade = FindObjectOfType<Fade>();
 			if (!m_fade) {
-				m_fade = Instantiate(Resources.Load<GameObject>("Effect/FadeCanvas")).GetComponentInChildren<Fade>();
+				m_fade = Instantiate(Resources.Load<GameObject>("Prefabs/FadeCanvas")).GetComponentInChildren<Fade>();
 			}
 			m_fade.Initialize();
 			DontDestroyOnLoad(this.gameObject);
