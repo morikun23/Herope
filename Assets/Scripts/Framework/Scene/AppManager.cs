@@ -41,7 +41,7 @@ namespace ToyBox {
 			m_audioManager.Initialize();
 			m_fade = FindObjectOfType<Fade>();
 			if (!m_fade) {
-				m_fade = Instantiate(Resources.Load<GameObject>("Prefabs/FadeCanvas")).GetComponentInChildren<Fade>();
+				m_fade = Instantiate(Resources.Load<GameObject>("Prefabs/Effects/FadeCanvas")).GetComponentInChildren<Fade>();
 			}
 			m_fade.Initialize();
 			DontDestroyOnLoad(this.gameObject);
