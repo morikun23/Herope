@@ -24,6 +24,8 @@ namespace Herope {
 		//Rigibody2Dのバッファ
 		private Rigidbody2D m_rigidbodyBuf;
 
+		public bool m_isStrongMode { get; private set; }
+
 		/// <summary>
 		/// アタッチされているRigidbodyを取得する
 		/// </summary>
@@ -57,6 +59,7 @@ namespace Herope {
 			m_currentState.OnEnter(this);
 			m_chargePower = 0;
 			m_hp = m_maxHp;
+			m_isStrongMode = false;
 		}
 
 		/// <summary>
@@ -111,10 +114,25 @@ namespace Herope {
 		/// </summary>
 		/// <param name="arg_value"></param>
 		public void Damage(int arg_value) {
+			if (m_isStrongMode) { return; }
+
+			//連続ダメージを防ぐための無敵モードを開始させる
+			StartCoroutine(OnStrongMode());
+			
 			m_hp -= arg_value;
 			if(m_hp <= 0) {
 				StateTransition(new PlayerDeadState());
 			}
+		}
+
+		/// <summary>
+		/// 無敵モードの時間管理を行うコルーチン
+		/// </summary>
+		/// <returns></returns>
+		private IEnumerator OnStrongMode() {
+			m_isStrongMode = true;
+			yield return new WaitForSeconds(2.0f);
+			m_isStrongMode = false;
 		}
 	}
 }
