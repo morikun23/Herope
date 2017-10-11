@@ -1,13 +1,25 @@
-﻿using System.Collections;
+﻿//担当：森田　勝
+//概要：ゲーム内のプレイヤー
+//　　　FSMの構造になっているので実際にはステート部分を構築していく
+//参考：なし
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Herope {
-
-	/// <summary>
-	/// プレイヤー
-	/// </summary>
 	public class Player : MonoBehaviour {
+
+		//最大体力
+		[SerializeField]
+		private int m_maxHp;
+		
+		public int MaxHp { get { return m_maxHp; } }
+
+		//体力
+		private int m_hp;
+	
+		public int Hp { get { return m_hp; } }
 
 		//Rigibody2Dのバッファ
 		private Rigidbody2D m_rigidbodyBuf;
@@ -42,6 +54,7 @@ namespace Herope {
 			m_currentState = new PlayerIdleState();
 			m_currentState.OnEnter(this);
 			m_chargePower = 0;
+			m_hp = m_maxHp;
 		}
 
 		// Update is called once per frame
@@ -88,5 +101,12 @@ namespace Herope {
 			m_currentState.OnEnter(this);
 		}
 #endif
+		/// <summary>
+		/// プレイヤーのHPを減らす
+		/// </summary>
+		/// <param name="arg_value"></param>
+		public void Damage(int arg_value) {
+			m_hp -= arg_value;
+		}
 	}
 }
