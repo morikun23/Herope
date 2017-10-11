@@ -51,6 +51,8 @@ namespace Herope {
 
 		public const float MAX_JUMP_POWER = 1;
 
+		public PlayerViewer m_viewer { get; private set; }
+
 		/// <summary>
 		/// 初期化
 		/// </summary>
@@ -60,6 +62,8 @@ namespace Herope {
 			m_chargePower = 0;
 			m_hp = m_maxHp;
 			m_isStrongMode = false;
+			m_viewer = FindObjectOfType<PlayerViewer>();
+			m_viewer.Initialize(this);
 		}
 
 		/// <summary>
@@ -75,7 +79,9 @@ namespace Herope {
 
 			//アップデート処理を実行
 			m_currentState.OnUpdate(this);
-			
+
+			//描画
+			m_viewer.UpdateByFrame(this);
 		}
 
 		/// <summary>
