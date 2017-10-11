@@ -89,7 +89,7 @@ namespace Herope {
 			return m_currentState.GetType();
 		}
 
-#if DEBUG
+#if APP_DEBUG
 		/// <summary>
 		/// プレイヤーの状態を取得する
 		///	本来は非公開メンバなので注意
