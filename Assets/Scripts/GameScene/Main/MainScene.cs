@@ -7,9 +7,13 @@ using UnityEngine.SceneManagement;
 namespace Herope {
 	public class MainScene : ToyBox.Scene {
 
+		//プレイヤー
+		private Player m_player;
+
 		public override IEnumerator OnEnter () {
 			//準備
-
+			m_player = FindObjectOfType<Player>();
+			m_player.Initialize();
 			//フェード
 			Fade fade = AppManager.Instance.m_fade;
 			fade.StartFade(new FadeIn() , Color.black , 0.5f);
@@ -19,11 +23,13 @@ namespace Herope {
 		public override IEnumerator OnUpdate () {
 			while (true) {
 
-				if (false) {
-					//TODO:遷移条件
+				m_player.UpdateByFrame();
+				if (m_player.GetCurrentState() == typeof(PlayerDeadState)) {
+					//プレイヤーが死亡しているようなら終了演出へ移る
 					break;
 				}
 				#if APP_DEBUG
+				//ゲームをスキップするための隠しコマンド
 				if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.W)) {
 					break;
 				}

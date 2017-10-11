@@ -107,10 +107,14 @@ namespace Herope {
 #endif
 		/// <summary>
 		/// プレイヤーのHPを減らす
+		/// 体力が０になったら死亡させる
 		/// </summary>
 		/// <param name="arg_value"></param>
 		public void Damage(int arg_value) {
 			m_hp -= arg_value;
+			if(m_hp <= 0) {
+				StateTransition(new PlayerDeadState());
+			}
 		}
 	}
 }
