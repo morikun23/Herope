@@ -48,17 +48,21 @@ namespace Herope {
 		public float m_chargePower;
 
 		public const float MAX_JUMP_POWER = 1;
-		
-		// Use this for initialization
-		void Start() {
+
+		/// <summary>
+		/// 初期化
+		/// </summary>
+		public void Initialize() {
 			m_currentState = new PlayerIdleState();
 			m_currentState.OnEnter(this);
 			m_chargePower = 0;
 			m_hp = m_maxHp;
 		}
 
-		// Update is called once per frame
-		void Update() {
+		/// <summary>
+		/// 更新
+		/// </summary>
+		public void UpdateByFrame() {
 
 			//必要があればステートの遷移をおこなう
 			IPlayerState nextState = m_currentState.GetNextState(this);
