@@ -7,38 +7,40 @@ using UnityEngine.SceneManagement;
 namespace Herope {
 	public class TitleScene : ToyBox.Scene {
 
+		[SerializeField]
+		Animator m_clickStart;
+
 		public override IEnumerator OnEnter () {
 			//準備
 
 			//フェード
 			Fade fade = AppManager.Instance.m_fade;
+			fade.Fill(Color.black);
+			yield return new WaitForSeconds(0.5f);
+
 			fade.StartFade(new FadeIn() , Color.black , 0.5f);
 			yield return new WaitWhile(fade.IsFading);
 		}
 
 		public override IEnumerator OnUpdate () {
-			while (true) {
+			yield return new WaitWhile(() => !Input.GetMouseButtonUp(0));
 
-				if (true) {
-					//TODO:遷移条件
-					break;
-				}
+			m_clickStart.Play("Flash");
 
+			yield return new WaitForSeconds(1.0f);
 
-				yield return null;
-			}
 		}
 
 		public override IEnumerator OnExit () {
+
 			//フェード
 			Fade fade = AppManager.Instance.m_fade;
+
 			fade.StartFade(new FadeOut() , Color.black , 0.5f);
 			yield return new WaitWhile(fade.IsFading);
-
-			//後処理
-
 			//シーン遷移
 			SceneManager.LoadScene("SceneMain");
+			yield break;
 		}
 
 	}
