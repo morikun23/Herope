@@ -8,9 +8,11 @@ namespace Herope{
 
 		float spd_move;
 
+
 		// Use this for initialization
 		void Start () {
 			StartCoroutine (DeleteCount());
+
 		}
 		
 		// Update is called once per frame
@@ -30,6 +32,12 @@ namespace Herope{
 			yield return new WaitForSeconds (2);
 			Destroy (gameObject);
 			yield break;
+		}
+
+		protected override void OnTriggerEnter2D (Collider2D arg_colldier)
+		{
+			base.OnTriggerEnter2D (arg_colldier);
+			Destroy (gameObject);
 		}
 	}
 }
