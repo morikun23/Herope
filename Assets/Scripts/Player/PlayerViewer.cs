@@ -13,6 +13,8 @@ namespace Herope {
 			if (arg_player.m_isStrongMode) {
 				//無敵モード中は点滅させる
 				m_spriteRenderer.enabled = !m_spriteRenderer.enabled;
+			} else {
+				m_spriteRenderer.enabled = true;
 			}
 		}
 	}
