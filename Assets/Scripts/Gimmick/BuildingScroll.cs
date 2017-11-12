@@ -15,6 +15,10 @@ namespace Herope{
 		void Update () {
 			//ScrollManagerからスクロールの速さを取得
 			transform.Translate (new Vector3(0,ScrollManager.Instance.GetScrollSpeed(),0));
+
+			if(transform.position.y > 10) {
+				Destroy(this.gameObject);
+			}
 		}
 	}
 }
