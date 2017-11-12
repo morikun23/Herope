@@ -42,13 +42,13 @@ namespace Herope{
 		public void ControllScrollSpeed(){
 			switch(m_scr_player.GetCurrentState ().Name){
 			case "PlayerIdleState":
-				m_spd_scroll = 0;
+				m_spd_scroll = 0.005f;
 				break;
 			case "PlayerJumpState":
 				m_spd_scroll += m_num_addScroll;
 				break;
 			case "PlayerKickState":
-				m_spd_scroll += m_num_addScroll;
+				m_spd_scroll += m_num_addScroll * 2;
 				break;
 			}
 		}
