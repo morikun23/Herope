@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Herope.Morita {
+namespace Herope {
 	public class PhysicsManager : MonoBehaviour {
 
 		// Use this for initialization
