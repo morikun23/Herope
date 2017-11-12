@@ -7,7 +7,7 @@ namespace Herope{
 	public class EnemyShot : DamageObject{
 
 		float spd_move;
-		Player scr_player;
+
 
 		// Use this for initialization
 		void Start () {
