@@ -10,7 +10,14 @@ namespace Herope {
 		//プレイヤー
 		private Player m_player;
 
+		private GameTimer m_timer;
+
+		private GeneratorManager m_generatorManager;
+
 		public override IEnumerator OnEnter () {
+
+			m_generatorManager = GetComponent<GeneratorManager>();
+
 			//準備
 			m_player = FindObjectOfType<Player>();
 			m_player.Initialize();
@@ -18,11 +25,20 @@ namespace Herope {
 			Fade fade = AppManager.Instance.m_fade;
 			fade.StartFade(new FadeIn() , Color.black , 0.5f);
 			yield return new WaitWhile(fade.IsFading);
+
+			m_timer = new GameTimer();
+			
 		}
 
 		public override IEnumerator OnUpdate () {
+
+			m_timer.Initialize();
+			m_generatorManager.SetDifficulty(new GameStartedDifficulty());
+
 			while (true) {
 
+				m_timer.UpdateByFrame();
+				
 				m_player.UpdateByFrame();
 				if (m_player.GetCurrentState() == typeof(PlayerDeadState)) {
 					//プレイヤーが死亡しているようなら終了演出へ移る

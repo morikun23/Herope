@@ -27,9 +27,18 @@ namespace Herope {
 			}
 		}
 
+		//最後に生成したオブジェクト（追従用）
+		public GameObject lastGimmick;
+
 		// Use this for initialization
 		void Start() {
 			StartGenerator();
+		}
+
+		public bool WaitForLastGimmick() {
+			return Vector3.Distance(
+				lastGimmick.transform.position + Vector3.up * ScrollManager.Instance.GetScrollSpeed() ,
+				this.transform.position) <= 3.0f;
 		}
 
 		private void StartGenerator() {
@@ -38,10 +47,13 @@ namespace Herope {
 
 		private IEnumerator Generate() {
 			while (true) {
-				yield return new WaitForSeconds(Interval);
+				yield return new WaitWhile(WaitForLastGimmick);
 
+				if(m_registerdGimmicks.Count <= 0) {
+					continue;
+				}
 				GameObject gimmick = m_registerdGimmicks.Dequeue();
-				Instantiate(gimmick , this.transform.position , Quaternion.identity);
+				lastGimmick = Instantiate(gimmick , this.transform.position , Quaternion.identity);
 			}
 		}
 
