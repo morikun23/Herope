@@ -36,7 +36,7 @@ namespace Herope{
 		// Update is called once per frame
 		void Update () {
 			ControllScrollSpeed ();
-			Debug.Log (m_spd_scroll);
+		//	Debug.Log (m_spd_scroll);
 		}
 
 		public void ControllScrollSpeed(){
@@ -58,6 +58,14 @@ namespace Herope{
 		/// </summary>
 		public float GetScrollSpeed(){
 			return m_spd_scroll;
+		}
+
+		/// <summary>
+		/// プレーヤーの現在の座標を返します。
+		/// </summary>
+		/// <returns>The player position.</returns>
+		public Vector3 GetPlayerPosition(){
+			return m_scr_player.transform.position;
 		}
 	}
 }
