@@ -17,16 +17,8 @@ namespace Herope {
 		}
 
 		public override IEnumerator OnUpdate () {
-			while (true) {
 
-				if (true) {
-					//TODO:遷移条件
-					break;
-				}
-
-
-				yield return null;
-			}
+			yield return new WaitWhile(() => !Input.GetMouseButtonUp(0));
 		}
 
 		public override IEnumerator OnExit () {
