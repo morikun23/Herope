@@ -14,9 +14,13 @@ namespace Herope {
 
 		private GeneratorManager m_generatorManager;
 
+		private GameScore m_score;
+
 		public override IEnumerator OnEnter () {
 
 			m_generatorManager = GetComponent<GeneratorManager>();
+			m_score = GetComponent<GameScore>();
+			m_score.InitializeScore();
 
 			//準備
 			m_player = FindObjectOfType<Player>();
@@ -34,6 +38,9 @@ namespace Herope {
 
 			m_timer.Initialize();
 			m_generatorManager.SetDifficulty(new GameStartedDifficulty());
+
+			m_score.StartCounter();
+
 
 			while (true) {
 
@@ -53,6 +60,8 @@ namespace Herope {
 
 				yield return null;
 			}
+
+			m_score.StopCounter();
 		}
 
 		public override IEnumerator OnExit () {

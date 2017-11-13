@@ -29,7 +29,7 @@ namespace Herope {
 		Generator m_mainGenerator;
 
 		// Use this for initialization
-		void Start() {
+		void OnEnable() {
 
 		}
 
@@ -46,7 +46,10 @@ namespace Herope {
 				}
 			}
 		}
-
+		   /// <summary>
+		   /// ////
+		   /// </summary>
+		   /// <param name="arg_difficulty"></param>
 		public void SetDifficulty(IGameDifficulty arg_difficulty) {
 			m_currentDifficulty = arg_difficulty;
 		}
