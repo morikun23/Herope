@@ -19,6 +19,8 @@ namespace Herope {
 
 		private int m_currentLife;
 
+
+
 		// Use this for initialization
 		void Start() {
 			m_playerBuf = FindObjectOfType<Player>();
@@ -41,5 +43,7 @@ namespace Herope {
 			}
 
 		}
+
+
 	}
 }

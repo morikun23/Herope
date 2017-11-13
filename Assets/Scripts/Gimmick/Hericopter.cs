@@ -9,6 +9,10 @@ public class Hericopter : MonoBehaviour {
 	[SerializeField]
 	int num_moveFrame;
 
+	[SerializeField]
+	GameObject obj_lifeBox;
+	Transform tra_lifeBoxSpawn;
+
 	//[SerializeField]
 	Transform tra_waitPosition;
 	//[SerializeField]
@@ -19,6 +23,7 @@ public class Hericopter : MonoBehaviour {
 		
 		tra_waitPosition = GameObject.Find ("HeliWait").transform;
 		tra_exitPosition = GameObject.Find ("HeliExit").transform;
+		tra_lifeBoxSpawn = GameObject.Find ("LifeBoxSpawn").transform;
 
 		StartCoroutine(PositionMove (tra_waitPosition.position));
 	}
@@ -49,8 +54,9 @@ public class Hericopter : MonoBehaviour {
 	}
 
 	public IEnumerator ExitHeli(){
-		yield return StartCoroutine(PositionMove (tra_exitPosition.position));
 
+		Instantiate (obj_lifeBox,tra_lifeBoxSpawn.position,Quaternion.identity);
+		yield return StartCoroutine(PositionMove (tra_exitPosition.position));
 		Destroy (gameObject);
 	}
 
