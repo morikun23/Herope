@@ -31,6 +31,12 @@ namespace Herope{
 		[SerializeField]
 		Sprite spr_carry;
 
+		[SerializeField]
+		GameObject obj_heli;
+		GameObject obj_heliSpawn;
+
+		Hericopter scr_hericopter;
+
 		// Use this for initialization
 		void Start () {
 			enu_status = Status.Wait;
@@ -38,6 +44,8 @@ namespace Herope{
 
 			spr_hukidasi = obj_hukidasi.GetComponent<SpriteRenderer> ();
 			spr_body = obj_body.GetComponent<SpriteRenderer> ();
+
+			obj_heliSpawn = GameObject.Find ("HeliSpawn");
 		}
 		
 		// Update is called once per frame
@@ -60,18 +68,29 @@ namespace Herope{
 		}
 
 		void OnTriggerEnter2D (Collider2D arg_colldier){
-			if(enu_status == Status.Wait){
+			if (enu_status == Status.Wait && arg_colldier.gameObject.layer == LayerMask.NameToLayer("Player")) {
 				enu_status = Status.Carry;
 
 				transform.parent = scr_player.transform;
-				transform.localPosition = new Vector3(0,0,transform.position.z);
+				transform.localPosition = new Vector3 (0, 0, transform.position.z);
+				CallHeri ();
+			} else if(enu_status == Status.Carry && arg_colldier.gameObject.layer == LayerMask.NameToLayer("Heli")){
+				enu_status = Status.Comp;
 
+				transform.parent = arg_colldier.transform;
+				transform.localPosition = new Vector3 (-1.6f, -0.3f, transform.position.z);
+				HeriExit ();
 			}
 			//Destroy (gameObject);
+
 		}
 
 		void CallHeri(){
-			
+			scr_hericopter = Instantiate (obj_heli,obj_heliSpawn.transform.position,Quaternion.identity).GetComponent<Hericopter>();
+		}
+
+		void HeriExit(){
+			StartCoroutine (scr_hericopter.ExitHeli());
 		}
 	}
 }

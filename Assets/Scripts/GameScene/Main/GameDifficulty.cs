@@ -14,7 +14,7 @@ namespace Herope {
 			int rate = UnityEngine.Random.Range(0 , 10);
 
 			if(rate <= 2) {
-				return arg_gimmickList.Dictionary[2];
+				return arg_gimmickList.Dictionary[3];
 			}
 			else if(rate <= 4){
 				return arg_gimmickList.Dictionary[1];
