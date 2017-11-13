@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 12cd23700d5cf1f4f87384b10777bac3
-timeCreated: 1510498051
+guid: 3e2de946a841c9a4aa82fe40417022db
+timeCreated: 1510550485
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SPH_LifePoint_0
-    21300002: SPH_LifePoint_1
+    21300000: SRH_ChildSpeak_0
+    21300002: SRH_ChildSpeak_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -80,26 +80,26 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SPH_LifePoint_0
+      name: SRH_ChildSpeak_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 5
+        y: 0
+        width: 26
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SPH_LifePoint_1
+      name: SRH_ChildSpeak_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 37
         y: 0
-        width: 32
-        height: 32
+        width: 26
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
