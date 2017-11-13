@@ -7,10 +7,7 @@ namespace Herope {
 	public class ScoreViewer : MonoBehaviour {
 
 		Text m_text;
-
-		[SerializeField]
-		GameScore m_score;
-
+		
 		// Use this for initialization
 		void Start() {
 			m_text = GetComponent<Text>();
@@ -18,7 +15,7 @@ namespace Herope {
 
 		// Update is called once per frame
 		void Update() {
-			m_text.text = m_score.Score.ToString().PadLeft(6,'0');
+			m_text.text = GameScore.Score.ToString().PadLeft(6,'0');
 		}
 	}
 }

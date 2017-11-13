@@ -5,11 +5,11 @@ using UnityEngine;
 namespace Herope {
 	public class GameScore : MonoBehaviour {
 
-		private float m_score;
+		private static float m_score;
 
 		public const int MAX_SCORE = 999999;
 
-		public int Score {
+		public static int Score {
 			get { return (int)m_score; }
 		}
 
