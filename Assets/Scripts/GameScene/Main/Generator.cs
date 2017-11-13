@@ -57,9 +57,20 @@ namespace Herope {
 			}
 		}
 
+		
 		public void RegisterGimmick(GameObject arg_gimmick) {
 			if(arg_gimmick == null) { return; }
 			if(m_registerdGimmicks.Count > CAPACITY) { return; }
+
+			#region 子供救助のギミックが重複しなくなるための処理
+			if(arg_gimmick.tag == "ChildGimmick") {
+				//Hierarchy上もしくはQueue上に合致するものがあったら登録させない
+				if (FindObjectOfType<ChildRescue>() || m_registerdGimmicks.Contains(arg_gimmick)) {
+					return;
+				}
+			}
+			#endregion
+
 			m_registerdGimmicks.Enqueue(arg_gimmick);
 		}
 
