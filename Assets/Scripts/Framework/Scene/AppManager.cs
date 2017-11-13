@@ -37,7 +37,7 @@ namespace ToyBox {
 		public Fade m_fade { get; private set; }
 
 		void Initialize () {
-			m_audioManager = AudioManager.Instance;
+			m_audioManager = new GameObject("AudioManager").AddComponent<AudioManager>();
 			m_audioManager.Initialize();
 			m_fade = FindObjectOfType<Fade>();
 			if (!m_fade) {
