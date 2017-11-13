@@ -120,11 +120,13 @@ namespace Herope {
 		/// </summary>
 		/// <param name="arg_value"></param>
 		public void Damage(int arg_value) {
-			if (m_isStrongMode) { return; }
+			if (m_isStrongMode && arg_value > 0) { return; }
 
-			//連続ダメージを防ぐための無敵モードを開始させる
-			StartCoroutine(OnStrongMode());
-			
+			if (arg_value > 0) {
+				//連続ダメージを防ぐための無敵モードを開始させる
+				StartCoroutine (OnStrongMode ());
+			}
+
 			m_hp -= arg_value;
 			if(m_hp <= 0) {
 				StateTransition(new PlayerDeadState());
