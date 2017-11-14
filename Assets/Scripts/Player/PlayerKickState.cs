@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ToyBox;
 
 namespace Herope {
 	public class PlayerKickState : IPlayerState {
@@ -22,7 +23,8 @@ namespace Herope {
 		}
 
 		public void OnExit(Player arg_player) {
-
+			AudioSource source = AppManager.Instance.m_audioManager.CreateSe("Randing");
+			source.Play();
 		}
 
 		public IPlayerState GetNextState(Player arg_player) {

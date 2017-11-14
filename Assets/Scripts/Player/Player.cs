@@ -59,12 +59,12 @@ namespace Herope {
 		/// </summary>
 		public void Initialize() {
 			m_currentState = new PlayerIdleState();
+			m_viewer = FindObjectOfType<PlayerViewer>();
+			m_viewer.Initialize(this);
 			m_currentState.OnEnter(this);
 			m_chargePower = 0;
 			m_hp = m_maxHp;
 			m_isStrongMode = false;
-			m_viewer = FindObjectOfType<PlayerViewer>();
-			m_viewer.Initialize(this);
 		}
 
 		/// <summary>

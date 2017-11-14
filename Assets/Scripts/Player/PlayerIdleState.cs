@@ -5,15 +5,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ToyBox;
 
 namespace Herope {
 	public class PlayerIdleState : IPlayerState {
 
 		public void OnEnter(Player arg_player) {
 			arg_player.m_chargePower = 0;
-			AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("Randing");
-			source.Play ();
 		}
 
 		public void OnUpdate(Player arg_player) {
