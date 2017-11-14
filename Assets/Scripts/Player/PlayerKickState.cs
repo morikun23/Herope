@@ -14,6 +14,7 @@ namespace Herope {
 		public void OnEnter(Player arg_player) {
 			//思わぬ動作を防ぐためにリセットしておく
 			arg_player.m_rigidbody.velocity = Vector2.zero;
+			arg_player.m_viewer.m_spriteRenderer.sprite = Resources.Load ("Sprites/SRH_PlayerKick",typeof(Sprite)) as Sprite;
 		}
 
 		public void OnUpdate(Player arg_player) {

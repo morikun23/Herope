@@ -11,10 +11,11 @@ namespace Herope {
 
 		public void OnEnter(Player arg_player) {
 			arg_player.m_chargePower = 0;
+
 		}
 
 		public void OnUpdate(Player arg_player) {
-
+			arg_player.m_viewer.m_spriteRenderer.sprite = Resources.Load ("Sprites/SRH_PlayerNeutoral",typeof(Sprite)) as Sprite;
 		}
 
 		public void OnExit(Player arg_player) {

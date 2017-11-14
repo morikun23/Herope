@@ -83,10 +83,10 @@ namespace Herope {
 		GameObject IGameDifficulty.LotteryGimmick(GimmickList arg_gimmickList) {
 			int rate = UnityEngine.Random.Range(0 , 10);
 
-			if (rate < 3) {
+			if (rate < 2) {
 				return arg_gimmickList.Dictionary[2];
 			}
-			else if (rate < 4) {
+			else if (rate < 3) {
 				return arg_gimmickList.Dictionary[3];
 			}
 			else {

@@ -22,7 +22,7 @@ namespace Herope {
 			float jumpPower = BASE_JUMP_POWER + (arg_player.m_chargePower * ADD_JUMP_POWER);
 			arg_player.m_rigidbody.AddForce(Vector2.right * jumpPower * 2);
 
-			//arg_player.m_viewer.m_spriteRenderer.sprite = Resources.Load ("Sprites/SRH_Player/SRH_Player_0",typeof(Sprite)) as Sprite;
+			arg_player.m_viewer.m_spriteRenderer.sprite = Resources.Load ("Sprites/SRH_PlayerJump",typeof(Sprite)) as Sprite;
 		}
 
 		public void OnUpdate(Player arg_player) {
