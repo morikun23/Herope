@@ -23,7 +23,7 @@ namespace Herope{
 			//Debug.Log (Mathf.Sin(transform.rotation.z));
 
 			//ScrollManagerからスクロールの速さを取得
-			transform.Translate (new Vector3(ScrollManager.Instance.GetScrollSpeed() * Mathf.Cos(transform.rotation.z),0,0));
+			transform.position += new Vector3(0,ScrollManager.Instance.GetScrollSpeed(),0);
 		
 			if(transform.position.y > 5.5f){
 				Destroy (gameObject);	
