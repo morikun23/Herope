@@ -25,6 +25,9 @@ namespace Herope{
 		bool flg_isDead;
 		Player scr_player;
 
+		[SerializeField]
+		bool flg_flip;
+
 		// Use this for initialization
 		void Start () {
 			StartCoroutine (Shot());
@@ -40,9 +43,13 @@ namespace Herope{
 				float rot_arm = Mathf.Atan2 (ScrollManager.Instance.GetPlayerPosition().y - obj_arm.transform.position.y,
 					ScrollManager.Instance.GetPlayerPosition().x - obj_arm.transform.position.x) * Mathf.Rad2Deg;
 
-
-				obj_arm.transform.eulerAngles = new Vector3 (0,0,rot_arm);
-				obj_head.transform.eulerAngles = new Vector3 (0,0,rot_head);
+				if (!flg_flip) {
+					obj_arm.transform.eulerAngles = new Vector3 (0, 0, rot_arm);
+					obj_head.transform.eulerAngles = new Vector3 (0, 0, rot_head);
+				} else {
+					obj_arm.transform.eulerAngles = new Vector3 (0, 0, rot_arm + 180);
+					obj_head.transform.eulerAngles = new Vector3 (0, 0, rot_head + 180);
+				}
 			}
 		}
 
@@ -52,8 +59,14 @@ namespace Herope{
 		IEnumerator Shot(){
 			while(true){
 				yield return new WaitForSeconds (2);
+				GameObject baf_obj;
 				if (!flg_isDead) {
-					GameObject baf_obj = Instantiate (obj_shot, obj_shotPoint.transform.position, obj_arm.transform.rotation);
+					if (!flg_flip) {
+						baf_obj = Instantiate (obj_shot, obj_shotPoint.transform.position, obj_arm.transform.rotation);
+					} else {
+						baf_obj = Instantiate (obj_shot, obj_shotPoint.transform.position, Quaternion.Euler(new Vector3(0,0,
+							obj_arm.transform.eulerAngles.z + 180)));
+					}
 					baf_obj.GetComponent<EnemyShot> ().SetMoveSpeed (0.1f);
 				}
 			}
