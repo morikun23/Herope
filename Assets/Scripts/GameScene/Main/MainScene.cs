@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToyBox;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace Herope {
@@ -22,10 +24,34 @@ namespace Herope {
 		//現在の難易度
 		private int m_currentDifficulty;
 
+		//最初にDisableしておくもの
+		[SerializeField]
+		GameObject m_trigger;
+
+		[SerializeField]
+		AudioSource bgm;
+
+		[SerializeField]
+		Text text;
+
+		private MonoBehaviour[] m_pausingMonoBehaviours;
+		
+		private void Awake() {
+			#region ゲーム開始前のカウントダウンのために最初は起動させない
+			m_player = FindObjectOfType<Player>();
+			m_player.GetComponent<Rigidbody2D>().gravityScale = 0;
+
+			m_pausingMonoBehaviours = m_trigger.GetComponentsInChildren<MonoBehaviour>();
+
+			foreach (MonoBehaviour mono in m_pausingMonoBehaviours) {
+				mono.enabled = false;
+			}
+			#endregion
+		}
+
 		public override IEnumerator OnEnter () {
 
 			//準備
-			m_player = FindObjectOfType<Player>();
 			m_generatorManager = GetComponent<GeneratorManager>();
 			m_score = FindObjectOfType<GameScore>();
 			m_timer = new GameTimer();
@@ -42,6 +68,40 @@ namespace Herope {
 		}
 
 		public override IEnumerator OnUpdate () {
+
+			#region ゲーム開始前のカウントダウン
+
+			yield return new WaitForSeconds(0.5f);
+
+			AppManager.Instance.m_audioManager.CreateSe("Jump").Play();
+			text.text = "3";
+
+			yield return new WaitForSeconds(1.0f);
+
+			AppManager.Instance.m_audioManager.CreateSe("Jump").Play();
+			text.text = "2";
+
+			yield return new WaitForSeconds(1.0f);
+
+			AppManager.Instance.m_audioManager.CreateSe("Jump").Play();
+			text.text = "1";
+
+			yield return new WaitForSeconds(1.0f);
+
+			AppManager.Instance.m_audioManager.CreateSe("Shot").Play();
+			text.text = "Mission Start!";
+
+			yield return new WaitForSeconds(0.5f);
+			
+			text.gameObject.SetActive(false);
+			bgm.Play();
+
+			m_player.GetComponent<Rigidbody2D>().gravityScale = 3;
+
+			foreach (MonoBehaviour mono in m_pausingMonoBehaviours) {
+				mono.enabled = true;
+			}
+			#endregion
 
 			//ゲーム開始
 			m_timer.Initialize();
