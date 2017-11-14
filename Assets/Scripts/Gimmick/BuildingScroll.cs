@@ -16,7 +16,7 @@ namespace Herope{
 			//ScrollManagerからスクロールの速さを取得
 			transform.Translate (new Vector3(0,ScrollManager.Instance.GetScrollSpeed(),0));
 
-			if(transform.position.y > 6.5f) {
+			if(transform.position.y > 8.0f) {
 				Destroy(this.gameObject);
 			}
 		}
