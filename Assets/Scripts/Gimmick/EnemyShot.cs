@@ -36,8 +36,10 @@ namespace Herope{
 
 		protected override void OnTriggerEnter2D (Collider2D arg_colldier)
 		{
-			base.OnTriggerEnter2D (arg_colldier);
-			Destroy (gameObject);
+			if (arg_colldier.gameObject.layer == LayerMask.NameToLayer ("Player")) {
+				base.OnTriggerEnter2D (arg_colldier);
+				Destroy (gameObject);
+			}
 		}
 	}
 }
