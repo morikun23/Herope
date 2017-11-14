@@ -20,7 +20,7 @@ namespace Herope{
 		// Update is called once per frame
 		void Update () {
 			transform.Translate(new Vector3 (spd_move,0,0));
-			Debug.Log (Mathf.Sin(transform.rotation.z));
+			//Debug.Log (Mathf.Sin(transform.rotation.z));
 
 			//ScrollManagerからスクロールの速さを取得
 			transform.Translate (new Vector3(ScrollManager.Instance.GetScrollSpeed() * Mathf.Cos(transform.rotation.z),0,0));

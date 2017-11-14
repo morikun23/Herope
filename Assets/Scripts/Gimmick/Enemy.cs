@@ -45,8 +45,12 @@ namespace Herope{
 					ScrollManager.Instance.GetPlayerPosition().x - obj_arm.transform.position.x) * Mathf.Rad2Deg;
 
 				if (!flg_flip) {
-					obj_arm.transform.eulerAngles = new Vector3 (0, 0, rot_arm);
-					obj_head.transform.eulerAngles = new Vector3 (0, 0, rot_head);
+				//	Debug.Log (obj_head.transform.eulerAngles);
+					if(obj_head.transform.eulerAngles.z <= 180){
+						
+						obj_arm.transform.eulerAngles = new Vector3 (0, 0, rot_arm);
+						obj_head.transform.eulerAngles = new Vector3 (0, 0, rot_head);
+					}
 				} else {
 					obj_arm.transform.eulerAngles = new Vector3 (0, 0, rot_arm + 180);
 					obj_head.transform.eulerAngles = new Vector3 (0, 0, rot_head + 180);
