@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ToyBox;
 
 namespace Herope {
 	public class PlayerJumpState : IPlayerState {
@@ -23,6 +24,9 @@ namespace Herope {
 			arg_player.m_rigidbody.AddForce(Vector2.right * jumpPower * 2);
 
 			arg_player.m_viewer.m_spriteRenderer.sprite = Resources.Load ("Sprites/SRH_PlayerJump",typeof(Sprite)) as Sprite;
+
+			AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("Jump");
+			source.Play ();
 		}
 
 		public void OnUpdate(Player arg_player) {

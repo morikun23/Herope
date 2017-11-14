@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ToyBox;
 
 namespace Herope {
 	public class Player : MonoBehaviour {
@@ -125,6 +126,11 @@ namespace Herope {
 			if (arg_value > 0) {
 				//連続ダメージを防ぐための無敵モードを開始させる
 				StartCoroutine (OnStrongMode ());
+				AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("Damage");
+				source.Play ();
+			} else {
+				AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("LifeUp");
+				source.Play ();
 			}
 
 			m_hp -= arg_value;

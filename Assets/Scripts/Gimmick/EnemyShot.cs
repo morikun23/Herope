@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Herope;
+using ToyBox;
 
 namespace Herope{
 	public class EnemyShot : DamageObject{
@@ -12,6 +13,7 @@ namespace Herope{
 		// Use this for initialization
 		void Start () {
 			StartCoroutine (DeleteCount());
+				
 
 		}
 		
@@ -33,6 +35,9 @@ namespace Herope{
 		}
 
 		IEnumerator DeleteCount(){
+			yield return new WaitForSeconds (0.1f);
+			AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("Shot");
+			source.Play ();
 			yield return new WaitForSeconds (2);
 			Destroy (gameObject);
 			yield break;

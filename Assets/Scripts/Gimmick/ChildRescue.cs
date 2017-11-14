@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Herope; 
+using ToyBox;
 
 namespace Herope{
 	public class ChildRescue : MonoBehaviour {
@@ -74,9 +75,16 @@ namespace Herope{
 				transform.parent = scr_player.transform;
 				transform.localPosition = new Vector3 (0, 0, transform.position.z);
 				CallHeri ();
+				AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("Rescue");
+				source.Play ();
+				source = AppManager.Instance.m_audioManager.CreateSe ("HeriComeing");
+				source.Play ();
 			} else if(enu_status == Status.Carry && arg_colldier.gameObject.layer == LayerMask.NameToLayer("Heli")){
 				enu_status = Status.Comp;
-
+				AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("Rescue");
+				source.Play ();
+				source = AppManager.Instance.m_audioManager.CreateSe ("HeriExit");
+				source.Play ();
 				transform.parent = arg_colldier.transform;
 				transform.localPosition = new Vector3 (-1.6f, -0.3f, transform.position.z);
 				HeriExit ();

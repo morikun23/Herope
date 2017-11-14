@@ -10,6 +10,9 @@ namespace Herope {
 		[SerializeField]
 		Animator m_clickStart;
 
+		[SerializeField]
+		AudioSource bgm_;
+
 		public override IEnumerator OnEnter () {
 			//準備
 
@@ -25,9 +28,15 @@ namespace Herope {
 		public override IEnumerator OnUpdate () {
 			yield return new WaitWhile(() => !Input.GetMouseButtonUp(0));
 
+			AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("Sys_Enter");
+			source.Play ();
+
 			m_clickStart.Play("Flash");
 
-			yield return new WaitForSeconds(1.0f);
+			for(int i = 1;i <= 60;i ++){
+				bgm_.volume = 1f - ((float)i/60f);
+				yield return null;
+			}
 
 		}
 
@@ -37,6 +46,7 @@ namespace Herope {
 			Fade fade = AppManager.Instance.m_fade;
 
 			fade.StartFade(new FadeOut() , Color.black , 0.5f);
+
 			yield return new WaitWhile(fade.IsFading);
 			//シーン遷移
 			SceneManager.LoadScene("SceneMain");

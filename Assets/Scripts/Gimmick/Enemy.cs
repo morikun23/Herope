@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Herope;
+using ToyBox;
 
 namespace Herope{
 	public class Enemy : MonoBehaviour {
@@ -82,6 +83,9 @@ namespace Herope{
 		IEnumerator Dead(){
 			float baf_spdX = -0.03f;
 			float baf_spdY = 0.1f;
+
+			AudioSource source = AppManager.Instance.m_audioManager.CreateSe ("Attack");
+			source.Play ();
 
 			Destroy (obj_arm);
 			Destroy (obj_body);
