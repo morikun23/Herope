@@ -28,6 +28,7 @@ namespace Herope {
 			yield return new WaitWhile(fade.IsFading);
 
 			//後処理
+			Resources.UnloadUnusedAssets();
 
 			//シーン遷移
 			SceneManager.LoadScene("SceneTitle");
